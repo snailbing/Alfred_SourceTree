@@ -25,13 +25,11 @@ class SourceTree:
   def _getProjects(self):
     try:
       plist = readPlist(self.filePath)
-      tempName = ""
       res = []
       for item in plist['$objects']:
         if(type(item) is str and item[:1] == '/'):
+          tempName = item.split('/')[-1]
           res.append([tempName, item])
-        elif (type(item) is str):
-          tempName = item
       return res
     except e:
       return []
